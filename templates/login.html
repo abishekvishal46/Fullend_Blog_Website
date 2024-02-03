@@ -1,0 +1,59 @@
+{% from "bootstrap5/form.html" import render_form %} {% block content %} {%
+include "header.html" %}
+
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="background-image: url('../static/assets/img/login-bg.jpg')"
+>
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="page-heading">
+          <h1>Log In</h1>
+          <span class="subheading">Welcome Back!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="mb-4">
+  <div class="container">
+    <div class="row">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ message | safe}}
+<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                    {% elif category == 'success' %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message | safe}}
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+      <!-- TODO: add a flash message here for users registering twice -->
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <!--TODO: render login form here-->
+        {{ render_form(form,novalidate=True) }}
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include "footer.html" %} {% endblock %}
